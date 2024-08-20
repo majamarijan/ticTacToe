@@ -73,7 +73,6 @@ export default function Game() {
           setGameOver(true);
           setWinner("X");
           setWinningFields(arr);
-          console.log("stop time");
         }
         if (hasWinplayer2?.length === arr.length) {
           setGameOver(true);

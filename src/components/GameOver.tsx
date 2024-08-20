@@ -8,7 +8,7 @@ export default function GameOver({pathname, winner}:{pathname:string, winner:str
         <div className="speakBubble">
           <img src={SpeakBubble} alt='message' width='100' height='300' />
           <p className="message">Winner is <strong style={{color: `${winner === 'X' ? 'red' : 'blue'}`}}>{winner}</strong>!!
-            <NavLink to={`${pathname}`} reloadDocument>Play again?</NavLink>
+            <NavLink to={pathname} reloadDocument>Play again?</NavLink>
             <NavLink to='/'>Return 👈</NavLink>
           </p>
         </div>
