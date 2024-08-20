@@ -1,6 +1,6 @@
 import { ActionFunctionArgs } from "react-router-dom";
 
-export async function loader({request, params}: ActionFunctionArgs) {
+export async function loader({params}: ActionFunctionArgs) {
   if(params.mode === 'normal') {
     return {autoPlayerMode: false}
   }else {
