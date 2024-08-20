@@ -12,11 +12,9 @@
 
 .frontPage {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   font-family: 'Kdam Thmor Pro', "Quicksand", sans-serif;
   justify-content: center;
-  gap: 3rem;
-  height: 60vh;
   animation: appear 1s ease-in forwards; 
    opacity:0;
 }
@@ -26,12 +24,12 @@
 }
 
 .frontPage h1 {
-  flex: 2 100%;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   color:rgb(6, 160, 212);
   letter-spacing: 4px;
-  animation: colorChange 5s ease-in-out infinite;
+  padding-bottom: 2rem;
+  animation: colorChange 3s ease-in-out infinite;
 }
 @keyframes colorChange {
   0% {color:rgb(6, 160, 212) }
@@ -63,18 +61,24 @@
   color: lightgoldenrodyellow;
 }
 
+.boardWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:450px;
+  width: 100%;
+  position: relative;
+  max-width:550px;
+}
+
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  width:450px;
-  height:450px;
-  border: 2px solid;
-  background: whitesmoke;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  grid-template-rows: repeat(3, minmax(100px, 1fr));
   border-radius: 15px;
   gap: 12px;
-  background: black;
-  padding: 24px;
+  background: linear-gradient(rgb(0, 0, 0), rgb(66, 84, 97), rgb(12, 12, 12));
+  padding: 12px;
   animation: fadeIn 2s ease-in forwards;
   opacity: 0;
 }
@@ -88,9 +92,9 @@
   align-items: center;
   justify-content: center;
   font-size: x-large;
-  border-radius: 5px;
-  border: 2px solid gainsboro;
-  background-color: rgb(88, 82, 74);
+  border-radius: 10%;
+  border: 1px solid #7bdea9;
+  background-color: rgb(91 111 113);
   transition: all .3s linear;
   font-family: 'Permanent Marker', cursive;
   color: white;
@@ -104,8 +108,8 @@
 
 .field:hover {
   cursor: pointer;
-  background:  rgb(88, 82, 74);
-  filter: brightness(2)
+  background:  rgb(107 126 123);
+  filter: brightness(2);
 }
 
 .field:hover:disabled {
@@ -121,7 +125,6 @@
 .gameOver {
   position: absolute;
   z-index: 200;
-  left: 0;
   top: calc(50% - 300px);
   display:grid;
   grid-template-columns: 150px 1fr;
@@ -194,6 +197,12 @@
 .gameOver button:hover {
   cursor: pointer;
   box-shadow: 0 0 12px green;
+}
+
+.blur {
+  filter: blur(12px);
+  pointer-events: none;
+  transition: .8s ease-in;
 }
 
 @media all and (max-width: 450px) {

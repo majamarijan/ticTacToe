@@ -137,14 +137,14 @@ export default function Game() {
   }
 
   return (
-    <div>
+    <div className='boardWrapper'>
       {gameOver && (
         <>
           <GameOver pathname={pathname} winner={winner} />
           <Fireworks />
         </>
       )}
-      <div className="board">
+      <div className={`board ${gameOver && "blur"}`}>
         {cards.map((card) => {
           return (
             <Field
