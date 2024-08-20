@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import { FieldsType, fields, winings } from "../data";
 import Field from "./Field";
-import { useLoaderData, useLocation } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { Mode } from "../routes/game";
 import Fireworks from "./Fireworks";
 import GameOver from "./GameOver";
@@ -47,7 +47,6 @@ const _players: Player[] = [
 ];
 
 export default function Game() {
-  const { pathname } = useLocation();
   const { autoPlayerMode } = useLoaderData() as Mode;
   const [cards, dispatch] = useReducer(reducer, fields);
   const [players, dispatchPlayers] = useReducer(playerReducer, _players);
@@ -139,7 +138,7 @@ export default function Game() {
     <div className='boardWrapper'>
       {gameOver && (
         <>
-          <GameOver pathname={pathname} winner={winner} />
+          <GameOver winner={winner} />
           <Fireworks />
         </>
       )}
