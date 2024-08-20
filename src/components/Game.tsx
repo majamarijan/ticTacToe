@@ -58,6 +58,7 @@ export default function Game() {
   const player1: Player | undefined = players.find((p) => p.name === "player1");
   const player2: Player | undefined = players.find((p) => p.name === "player2");
   const [winningFields, setWinningFields] = useState<number[]>();
+  const calculateAllFields = [...cards].every((x) => x.isActive);
 
   function calculateWinner() {
     if (
@@ -82,11 +83,25 @@ export default function Game() {
     }
   }
 
+  function reloadWinner() {
+    setWinner("");
+    setWinningFields(undefined);
+    dispatch({ type: "reset", value: 0 });
+    dispatchPlayers({ type: "player1", value: 0 });
+    dispatchPlayers({ type: "player2", value: 0 });
+  }
+
   useEffect(() => {
     if (player1 || player2) {
+      if(calculateAllFields) {
+        setGameOver(true);
+        setWinner("Draw");
+      }
       calculateWinner();
     }
-  }, [players]);
+  }, [players, cards]);
+
+  
 
   function handleAutoplayer() {
     const freeFields = cards.filter((x) => !x.isActive);
@@ -138,7 +153,7 @@ export default function Game() {
     <div className='boardWrapper'>
       {gameOver && (
         <>
-          <GameOver winner={winner} />
+          <GameOver winner={winner} reloadWinner={reloadWinner} />
           <Fireworks />
         </>
       )}
