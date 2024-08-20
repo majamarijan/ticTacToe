@@ -1,9 +1,11 @@
 import GameOverBoy from '../assets/man.svg';
 import SpeakBubble from '../assets/Mediamodifier-Design (4).svg'
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useHref, useLocation } from "react-router-dom";
 
 export default function GameOver({winner}:{winner:string}) {
   const location = useLocation();
+  const href = useHref(location.pathname);
+  console.log(href)
   console.log(location)
   return (
     <div className={`gameOver ${winner && 'showWinner'}`}>
