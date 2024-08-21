@@ -85,6 +85,7 @@ export default function Game() {
 
   function reloadWinner() {
     setWinner("");
+    setGameOver(false);
     setWinningFields(undefined);
     dispatch({ type: "reset", value: 0 });
     dispatchPlayers({ type: "player1", value: 0 });
